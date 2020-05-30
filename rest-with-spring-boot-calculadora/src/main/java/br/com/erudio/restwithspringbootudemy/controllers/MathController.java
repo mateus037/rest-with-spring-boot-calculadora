@@ -1,4 +1,4 @@
-package br.com.erudio.restwithspringbootudemy;
+package br.com.erudio.restwithspringbootudemy.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.erudio.Math.SimpleMath;
-import br.com.erudio.request.converters.NumberConverter;
+import br.com.erudio.restwithspringbootudemy.converters.NumberConverter;
 import br.com.erudio.restwithspringbootudemy.exception.UnsoportedMathOperationException;
+import br.com.erudio.restwithspringbootudemy.services.SimpleMath;
 
 @RestController
 public class MathController {
 	
 	@Autowired
-	private SimpleMath math;
+	private SimpleMath simpleMath;
 
 	@RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
 	public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
@@ -23,7 +23,7 @@ public class MathController {
 		if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
 			throw new UnsoportedMathOperationException("Please set a numeric value!");
 		}
-		return math.sum(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
+		return simpleMath.sum(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
 	}
 	
 	@RequestMapping(value = "/subtraction/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -33,7 +33,7 @@ public class MathController {
 		if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
 			throw new UnsoportedMathOperationException("Please set a numeric value!");
 		}
-		return math.subtraction(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
+		return simpleMath.subtraction(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
 	}
 	
 	@RequestMapping(value = "/multiplication/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -43,7 +43,7 @@ public class MathController {
 		if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
 			throw new UnsoportedMathOperationException("Please set a numeric value!");
 		}
-		return math.multiplication(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
+		return simpleMath.multiplication(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
 	}
 	
 	@RequestMapping(value = "/division/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -53,7 +53,7 @@ public class MathController {
 		if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
 			throw new UnsoportedMathOperationException("Please set a numeric value!");
 		}
-		return math.division(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
+		return simpleMath.division(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
 	}
 	
 	@RequestMapping(value = "/mean/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class MathController {
 		if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
 			throw new UnsoportedMathOperationException("Please set a numeric value!");
 		}
-		return math.mean(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
+		return simpleMath.mean(NumberConverter.converToDouble(numberOne), NumberConverter.converToDouble(numberTwo));
 		
 	}
 	
@@ -74,7 +74,7 @@ public class MathController {
 		if (!NumberConverter.isNumeric(number)) {
 			throw new UnsoportedMathOperationException("Please set a numeric value!");
 		}
-		return math.squareRoot(NumberConverter.converToDouble(number));
+		return simpleMath.squareRoot(NumberConverter.converToDouble(number));
 	}
 
 }
