@@ -1,5 +1,8 @@
 package br.com.erudio.Math;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class SimpleMath {
 
 	public Double sum(double firstNumber, double secondnumber) {
